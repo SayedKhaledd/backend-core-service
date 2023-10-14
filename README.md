@@ -1,1 +1,1 @@
-# backend-template-service
+# backend-core-service
