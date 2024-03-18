@@ -1,6 +1,5 @@
 package com.example.backendcoreservice.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TemplateDto {
+public class AbstractDto {
     private Long id;
 
     private LocalDateTime creationDate;

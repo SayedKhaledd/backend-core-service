@@ -1,20 +1,16 @@
 package com.example.backendcoreservice.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
+@AllArgsConstructor
 @Data
-@Entity
-@Table(name = "template-entity")
-public class TemplateEntity {
-    @Id
-    @SequenceGenerator(name = "template_entity_sequence", sequenceName = "template_entity_sequence", allocationSize = 1)
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "template_entity_sequence")
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@MappedSuperclass
+public class AbstractEntity {
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
