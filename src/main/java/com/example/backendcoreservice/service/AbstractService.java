@@ -7,7 +7,7 @@ import com.example.backendcoreservice.transformer.AbstractTransformer;
 
 public interface AbstractService<E extends AbstractEntity, T extends AbstractDto, K extends AbstractTransformer, L extends AbstractDao> {
 
-    E getTransformer();
+    K getTransformer();
 
-    T getDao();
+    L getDao();
 }
