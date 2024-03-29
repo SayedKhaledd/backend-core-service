@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 @Data
 @MappedSuperclass
 public class AbstractEntity {
-    @Column(name = "creation_date")
+    @Column(name = "created_date")
     private LocalDateTime creationDate;
 
-    @Column(name = "modification_date")
+    @Column(name = "modified_date")
     private LocalDateTime modificationDate;
 
     @Column(name = "created_by")

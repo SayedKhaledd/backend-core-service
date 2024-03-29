@@ -9,20 +9,20 @@ import java.util.List;
 public interface AbstractTransformer<E extends AbstractEntity, T extends AbstractDto, K extends AbstractMapper<E, T>> {
     K getMapper();
 
-    default E transformAbstractDtoToAbstractEntity(T dto) {
-        return (E) getMapper().transformAbstractDtoToAbstractEntity(dto);
+    default E transformDtoToEntity(T dto) {
+        return (E) getMapper().transformDtoToEntity(dto);
     }
 
-    default List<E> transformAbstractDtosToAbstractEntities(List<T> dtos) {
-        return dtos.stream().map(this::transformAbstractDtoToAbstractEntity).toList();
+    default List<E> transformDtosToEntities(List<T> dtos) {
+        return dtos.stream().map(this::transformDtoToEntity).toList();
     }
 
-    default T transformAbstractEntityToAbstractDto(E entity) {
-        return (T) getMapper().transformAbstractEntityToAbstractDto(entity);
+    default T transformEntityToDto(E entity) {
+        return (T) getMapper().transformEntityToDto(entity);
     }
 
-    default List<T> transformAbstractEntitiesToAbstractDtos(List<E> entities) {
-        return entities.stream().map(this::transformAbstractEntityToAbstractDto).toList();
+    default List<T> transformEntitiesToDtos(List<E> entities) {
+        return entities.stream().map(this::transformEntityToDto).toList();
     }
 
 
