@@ -25,12 +25,21 @@ public interface AbstractService<E extends AbstractEntity, T extends AbstractDto
     }
 
     default T create(T dto) {
+        log.info("AbstractService: create() was called -  dto{}", dto);
         if (dto.getId() != null && findById(dto.getId()) != null)
             throw new EntityNotFoundException(String.format("Entity with id %s already exists", dto.getId()));
-        log.info("Creating entity with dto {}", dto);
         E entity = (E) getTransformer().transformDtoToEntity(dto);
-        log.info("Creating entity with entity {}", entity);
 
+        log.info("AbstractService: create() was called -  entity{}", entity);
         return (T) getTransformer().transformEntityToDto(getDao().create(entity));
     }
+    default T update(T dto) {
+        log.info("AbstractService: update() was called -  dto{}", dto);
+        if (dto.getId() == null || findById(dto.getId()) == null)
+            throw new EntityNotFoundException(String.format("Entity with id %s does not exist", dto.getId()));
+        E entity = (E) getTransformer().transformDtoToEntity(dto);
+        log.info("AbstractService: update() was called -  entity{}", entity);
+        return (T) getTransformer().transformEntityToDto(getDao().update(entity));
+    }
+
 }
