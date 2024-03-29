@@ -10,7 +10,7 @@ public interface AbstractTransformer<E extends AbstractEntity, T extends Abstrac
     K getMapper();
 
     default E transformDtoToEntity(T dto) {
-        return (E) getMapper().transformDtoToEntity(dto);
+        return getMapper().transformDtoToEntity(dto);
     }
 
     default List<E> transformDtosToEntities(List<T> dtos) {

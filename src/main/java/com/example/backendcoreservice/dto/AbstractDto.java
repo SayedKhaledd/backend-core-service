@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 public class AbstractDto {
     private Long id;
 
-    private LocalDateTime creationDate;
+    private LocalDateTime createdDate;
 
-    private LocalDateTime modificationDate;
+    private LocalDateTime modifiedDate;
 
     private String createdBy;
 

@@ -5,10 +5,12 @@ import com.example.backendcoreservice.dto.AbstractDto;
 import com.example.backendcoreservice.model.AbstractEntity;
 import com.example.backendcoreservice.transformer.AbstractTransformer;
 import jakarta.persistence.EntityNotFoundException;
+import org.slf4j.Logger;
 
 import java.util.Optional;
 
 public interface AbstractService<E extends AbstractEntity, T extends AbstractDto, K extends AbstractTransformer, L extends AbstractDao> {
+    Logger log = org.slf4j.LoggerFactory.getLogger(AbstractService.class);
 
     K getTransformer();
 
@@ -25,8 +27,10 @@ public interface AbstractService<E extends AbstractEntity, T extends AbstractDto
     default T create(T dto) {
         if (dto.getId() != null && findById(dto.getId()) != null)
             throw new EntityNotFoundException(String.format("Entity with id %s already exists", dto.getId()));
-
+        log.info("Creating entity with dto {}", dto);
         E entity = (E) getTransformer().transformDtoToEntity(dto);
-        return (T) getTransformer().transformEntityToDto((E) getDao().getRepo().save(entity));
+        log.info("Creating entity with entity {}", entity);
+
+        return (T) getTransformer().transformEntityToDto(getDao().create(entity));
     }
 }
