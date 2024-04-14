@@ -1,5 +1,6 @@
 package com.example.backendcoreservice.api;
 
+import com.example.backendcoreservice.exception.CustomException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +21,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(apiResponseBuilder.buildFailureResponse(e.getMessage(), 404), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(value = Exception.class)
-    public ResponseEntity handleException(Exception e) {
+    @ExceptionHandler(value = CustomException.class)
+    public ResponseEntity handleException(CustomException e) {
         log.error("Internal server error: {}", e.getMessage());
         return new ResponseEntity<>(apiResponseBuilder.buildFailureResponse(e.getMessage(), 500), HttpStatus.INTERNAL_SERVER_ERROR);
     }

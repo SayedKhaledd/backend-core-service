@@ -1,24 +1,20 @@
 package com.example.backendcoreservice.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-public class AbstractDto {
-    private Long id;
-
+@EqualsAndHashCode(callSuper = false)
+public abstract class AbstractDto {
     private LocalDateTime createdDate;
 
     private LocalDateTime modifiedDate;
-
-    private String createdBy;
-
-    private String modifiedBy;
 
     private Boolean markedAsDeleted = false;
 }
