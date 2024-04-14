@@ -29,8 +29,8 @@ public class ApiResponseBuilder<T extends AbstractDto> {
     }
 
 
-    public ApiResponse<T> buildFailureResponse(String error, Integer appCode) {
-        return ApiResponse.<T>builder()
+    public ApiResponse buildFailureResponse(String error, Integer appCode) {
+        return ApiResponse.builder()
                 .appCode(appCode)
                 .response(null)
                 .message("failure")
