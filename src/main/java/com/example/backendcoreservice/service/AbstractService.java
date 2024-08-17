@@ -17,12 +17,16 @@ public interface AbstractService<E extends AbstractEntity, T extends AbstractDto
 
     L getDao();
 
+    default E findEntityById(Long id) throws Throwable {
+        return (E) getDao().findById(id).orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+    }
+
     default T findById(Long id) {
         Optional<E> dto = getDao().findById(id);
         if (dto.isPresent()) {
             return (T) getTransformer().transformEntityToDto(dto.get());
         }
-        throw new EntityNotFoundException("Entity not found");
+        throw new EntityNotFoundException(String.format("Entity with id %s does not exist", id));
     }
 
     default List<T> findAll() {
@@ -32,7 +36,16 @@ public interface AbstractService<E extends AbstractEntity, T extends AbstractDto
     default T create(T dto) {
         log.info("AbstractService: create() was called -  dto{}", dto);
         E entity = (E) getTransformer().transformDtoToEntity(dto);
+        entity = doBeforeCreate(entity, dto);
         return (T) getTransformer().transformEntityToDto(getDao().create(entity));
+    }
+
+    default E doBeforeCreate(E entity, T dto) {
+        return entity;
+    }
+
+    default E doBeforeUpdate(E entity, T dto) {
+        return entity;
     }
 
     default T update(T dto, Long id) {
@@ -40,6 +53,7 @@ public interface AbstractService<E extends AbstractEntity, T extends AbstractDto
         if (id == null || findById(id) == null)
             throw new EntityNotFoundException(String.format("Entity with id %s does not exist", id));
         E entity = (E) getTransformer().transformDtoToEntity(dto);
+        entity = doBeforeUpdate(entity, dto);
         return (T) getTransformer().transformEntityToDto(getDao().update(entity));
     }
 
