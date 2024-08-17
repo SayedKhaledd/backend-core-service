@@ -7,6 +7,7 @@ import com.example.backendcoreservice.transformer.AbstractTransformer;
 import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface AbstractService<E extends AbstractEntity, T extends AbstractDto, K extends AbstractTransformer, L extends AbstractDao> {
@@ -22,6 +23,10 @@ public interface AbstractService<E extends AbstractEntity, T extends AbstractDto
             return (T) getTransformer().transformEntityToDto(dto.get());
         }
         throw new EntityNotFoundException("Entity not found");
+    }
+
+    default List<T> findAll() {
+        return getTransformer().transformEntitiesToDtos(getDao().findAll());
     }
 
     default T create(T dto) {

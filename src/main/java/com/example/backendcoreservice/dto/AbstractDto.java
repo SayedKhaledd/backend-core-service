@@ -1,9 +1,6 @@
 package com.example.backendcoreservice.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -17,4 +14,8 @@ public abstract class AbstractDto {
     private LocalDateTime modifiedDate;
 
     private Boolean markedAsDeleted = false;
+
+    private String createdBy;
+
+    private String modifiedBy;
 }
