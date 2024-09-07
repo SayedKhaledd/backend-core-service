@@ -26,4 +26,10 @@ public class GlobalExceptionHandler {
         log.error("Internal server error: {}", e.getMessage());
         return new ResponseEntity<>(apiResponseBuilder.buildFailureResponse(e.getMessage(), 500), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(value = RuntimeException.class)
+    public ResponseEntity handleException(RuntimeException e) {
+        log.error("Internal server error: {}", e.getMessage());
+        return new ResponseEntity<>(apiResponseBuilder.buildFailureResponse(e.getMessage(), 500), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
