@@ -1,10 +1,12 @@
 package com.example.backendcoreservice.dao;
 
+import com.example.backendcoreservice.api.pagination.PaginationRequest;
 import com.example.backendcoreservice.model.AbstractEntity;
 import org.slf4j.Logger;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,5 +32,9 @@ public interface AbstractDao<E extends AbstractEntity, T extends JpaRepository<E
 
     default List<E> findAll() {
         return getRepo().findAll();
+    }
+
+    default Pageable getPageRequest(PaginationRequest<?> paginationRequest) {
+        return PageRequest.of(paginationRequest.getPageNumber() - 1, paginationRequest.getPageSize());
     }
 }

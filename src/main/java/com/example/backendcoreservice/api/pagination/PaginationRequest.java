@@ -1,5 +1,6 @@
 package com.example.backendcoreservice.api.pagination;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -7,5 +8,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class PaginationRequest<T> extends Page {
     private T criteria;
+    @NotNull(message = "this field is required")
+    Boolean deletedRecords = false;
 
 }
