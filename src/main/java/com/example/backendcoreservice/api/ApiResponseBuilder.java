@@ -38,6 +38,16 @@ public class ApiResponseBuilder<Dto extends AbstractDto> {
                 .error(null)
                 .build();
     }
+    public ApiResponse<?> buildSuccessResponse() {
+        return ApiResponse.<PaginationResponse<Dto>>builder()
+                .appCode(200)
+                .response(null)
+                .message("success")
+                .success(true)
+                .error(null)
+                .build();
+    }
+
 
 
     public ApiResponse buildFailureResponse(String error, Integer appCode) {
