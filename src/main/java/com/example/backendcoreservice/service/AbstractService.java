@@ -66,7 +66,7 @@ public interface AbstractService<Entity extends AbstractEntity, Dto extends Abst
                 result(getTransformer().transformEntitiesToDtos(entities.getContent())).
                 isFirst(entities.isFirst()).
                 isLast(entities.isLast()).
-                pageNumber(entities.getNumber()).
+                pageNumber(entities.getNumber()+1).
                 pageSize(entities.getSize()).
                 build();
     }

@@ -10,5 +10,7 @@ public class PaginationRequest<T> extends Page {
     private T criteria;
     @NotNull(message = "this field is required")
     Boolean deletedRecords = false;
+    String sortBy = "id";
+    Boolean sortDesc = false;
 
 }

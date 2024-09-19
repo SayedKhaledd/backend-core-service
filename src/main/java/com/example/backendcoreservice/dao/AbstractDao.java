@@ -5,6 +5,7 @@ import com.example.backendcoreservice.model.AbstractEntity;
 import org.slf4j.Logger;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -35,7 +36,9 @@ public interface AbstractDao<E extends AbstractEntity, T extends JpaRepository<E
     }
 
     default Pageable getPageRequest(PaginationRequest<?> paginationRequest) {
-        return PageRequest.of(paginationRequest.getPageNumber() - 1, paginationRequest.getPageSize());
+        return PageRequest.of(paginationRequest.getPageNumber() - 1, paginationRequest.getPageSize(),
+                paginationRequest.getSortDesc() ? Sort.by(paginationRequest.getSortBy()).descending() :
+                        Sort.by(paginationRequest.getSortBy()).ascending());
     }
 
     default Boolean existsById(Long id) {
