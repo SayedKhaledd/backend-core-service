@@ -72,7 +72,13 @@ public interface AbstractService<Entity extends AbstractEntity, Dto extends Abst
     }
 
     default Boolean existsById(Long id) {
+        log.info("AbstractService: existsById() was called -  id{}", id);
         return getDao().existsById(id);
+    }
+
+    default void delete(Long id) {
+        log.info("AbstractService: delete() was called -  id{}", id);
+        getDao().deleteById(id);
     }
 
 }

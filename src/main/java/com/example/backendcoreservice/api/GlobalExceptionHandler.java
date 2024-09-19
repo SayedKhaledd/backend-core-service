@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -32,4 +33,11 @@ public class GlobalExceptionHandler {
         log.error("Internal server error: {}", e.getMessage());
         return new ResponseEntity<>(apiResponseBuilder.buildFailureResponse(e.getMessage(), 500), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public ResponseEntity handleException(MethodArgumentNotValidException e) {
+        log.error("MethodArgumentNotValidException: {}", e.getMessage());
+        return new ResponseEntity<>(apiResponseBuilder.buildFailureResponse(e.getMessage(), 400), HttpStatus.BAD_REQUEST);
+    }
+
 }

@@ -39,6 +39,12 @@ public interface AbstractDao<E extends AbstractEntity, T extends JpaRepository<E
     }
 
     default Boolean existsById(Long id) {
+        log.info("AbstractDao: existsById() was called -  id{}", id);
         return getRepo().existsById(id);
+    }
+
+    default void deleteById(Long id) {
+        log.info("AbstractDao: deleteById() was called -  id{}", id);
+        getRepo().deleteById(id);
     }
 }
