@@ -44,8 +44,5 @@ public abstract class AbstractEntity {
     @LastModifiedBy
     private String modifiedBy;
 
-    //TODO: MAY NEED TO DELETE THIS FIELD AND USE SOFT DELETE ANNOTATION
-    @Column(name = "marked_as_deleted",insertable = false, updatable = false)
-    private Boolean markedAsDeleted = false;
 
 }

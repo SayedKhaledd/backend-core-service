@@ -37,4 +37,8 @@ public interface AbstractDao<E extends AbstractEntity, T extends JpaRepository<E
     default Pageable getPageRequest(PaginationRequest<?> paginationRequest) {
         return PageRequest.of(paginationRequest.getPageNumber() - 1, paginationRequest.getPageSize());
     }
+
+    default Boolean existsById(Long id) {
+        return getRepo().existsById(id);
+    }
 }

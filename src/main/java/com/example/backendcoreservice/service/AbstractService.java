@@ -71,4 +71,8 @@ public interface AbstractService<Entity extends AbstractEntity, Dto extends Abst
                 build();
     }
 
+    default Boolean existsById(Long id) {
+        return getDao().existsById(id);
+    }
+
 }
