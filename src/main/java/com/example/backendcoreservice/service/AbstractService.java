@@ -54,6 +54,7 @@ public interface AbstractService<Entity extends AbstractEntity, Dto extends Abst
         log.info("AbstractService: update() was called -  dto{}", dto);
         if (id == null || findById(id) == null)
             throw new EntityNotFoundException(String.format("Entity with id %s does not exist", id));
+
         Entity entity = (Entity) getTransformer().transformDtoToEntity(dto);
         entity = doBeforeUpdate(entity, dto);
         return (Dto) getTransformer().transformEntityToDto(getDao().update(entity));
