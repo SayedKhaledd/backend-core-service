@@ -1,15 +1,16 @@
 package com.example.backendcoreservice.api;
 
+import com.example.backendcoreservice.api.pagination.PaginationResponse;
 import com.example.backendcoreservice.dto.AbstractDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class ApiResponseBuilder<T extends AbstractDto> {
+public class ApiResponseBuilder<Dto extends AbstractDto> {
 
-    public ApiResponse<T> buildSuccessResponse(T data) {
-        return ApiResponse.<T>builder()
+    public ApiResponse<Dto> buildSuccessResponse(Dto data) {
+        return ApiResponse.<Dto>builder()
                 .appCode(200)
                 .response(data)
                 .message("success")
@@ -18,8 +19,8 @@ public class ApiResponseBuilder<T extends AbstractDto> {
                 .build();
     }
 
-    public ApiResponse<List<T>> buildSuccessResponse(List<T> data) {
-        return ApiResponse.<List<T>>builder()
+    public ApiResponse<List<Dto>> buildSuccessResponse(List<Dto> data) {
+        return ApiResponse.<List<Dto>>builder()
                 .appCode(200)
                 .response(data)
                 .message("success")
@@ -27,6 +28,26 @@ public class ApiResponseBuilder<T extends AbstractDto> {
                 .error(null)
                 .build();
     }
+
+    public ApiResponse<PaginationResponse<Dto>> buildSuccessResponse(PaginationResponse<Dto> data) {
+        return ApiResponse.<PaginationResponse<Dto>>builder()
+                .appCode(200)
+                .response(data)
+                .message("success")
+                .success(true)
+                .error(null)
+                .build();
+    }
+    public ApiResponse<?> buildSuccessResponse() {
+        return ApiResponse.<PaginationResponse<Dto>>builder()
+                .appCode(200)
+                .response(null)
+                .message("success")
+                .success(true)
+                .error(null)
+                .build();
+    }
+
 
 
     public ApiResponse buildFailureResponse(String error, Integer appCode) {
