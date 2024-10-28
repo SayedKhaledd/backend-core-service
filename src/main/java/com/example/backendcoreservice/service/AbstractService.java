@@ -67,7 +67,7 @@ public interface AbstractService<Entity extends AbstractEntity, Dto extends Abst
                 result(getTransformer().transformEntitiesToDtos(entities.getContent())).
                 isFirst(entities.isFirst()).
                 isLast(entities.isLast()).
-                pageNumber(entities.getNumber()+1).
+                pageNumber(entities.getNumber() + 1).
                 pageSize(entities.getSize()).
                 build();
     }
@@ -79,7 +79,11 @@ public interface AbstractService<Entity extends AbstractEntity, Dto extends Abst
 
     default void delete(Long id) {
         log.info("AbstractService: delete() was called -  id{}", id);
+        if (!existsById(id))
+            throw new EntityNotFoundException("Entity with id %s does not exist" + id);
         getDao().deleteById(id);
     }
+
+    String getEntityName();
 
 }

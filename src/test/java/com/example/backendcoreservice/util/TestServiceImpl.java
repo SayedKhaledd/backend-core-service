@@ -19,4 +19,9 @@ public class TestServiceImpl implements TestService {
     public TestTransformer getTransformer() {
         return testTransformer;
     }
+
+    @Override
+    public String getEntityName() {
+        return TestEntity.class.getSimpleName();
+    }
 }
