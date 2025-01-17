@@ -1,6 +1,7 @@
 package com.example.backendcoreservice.api.pagination;
 
 import com.example.backendcoreservice.dto.AbstractDto;
+import com.example.backendcoreservice.dto.Dto;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaginationResponse<T extends AbstractDto> extends Page {
+public class PaginationResponse<T extends Dto> extends Page {
     private Long totalNumberOfPages;
     private Long totalNumberOfElements;
     private List<T> result;

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @SuperBuilder(toBuilder = true)
-public abstract class AbstractDto {
+public abstract class AbstractDto implements Dto {
     private LocalDateTime createdDate;
 
     private LocalDateTime modifiedDate;

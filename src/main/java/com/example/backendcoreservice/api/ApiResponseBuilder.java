@@ -2,15 +2,16 @@ package com.example.backendcoreservice.api;
 
 import com.example.backendcoreservice.api.pagination.PaginationResponse;
 import com.example.backendcoreservice.dto.AbstractDto;
+import com.example.backendcoreservice.dto.Dto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class ApiResponseBuilder<Dto extends AbstractDto> {
+public class ApiResponseBuilder<DTO extends Dto> {
 
-    public ApiResponse<Dto> buildSuccessResponse(Dto data) {
-        return ApiResponse.<Dto>builder()
+    public ApiResponse<DTO> buildSuccessResponse(DTO data) {
+        return ApiResponse.<DTO>builder()
                 .appCode(200)
                 .response(data)
                 .message("success")
@@ -19,8 +20,8 @@ public class ApiResponseBuilder<Dto extends AbstractDto> {
                 .build();
     }
 
-    public ApiResponse<List<Dto>> buildSuccessResponse(List<Dto> data) {
-        return ApiResponse.<List<Dto>>builder()
+    public ApiResponse<List<DTO>> buildSuccessResponse(List<DTO> data) {
+        return ApiResponse.<List<DTO>>builder()
                 .appCode(200)
                 .response(data)
                 .message("success")
@@ -29,8 +30,8 @@ public class ApiResponseBuilder<Dto extends AbstractDto> {
                 .build();
     }
 
-    public ApiResponse<PaginationResponse<Dto>> buildSuccessResponse(PaginationResponse<Dto> data) {
-        return ApiResponse.<PaginationResponse<Dto>>builder()
+    public ApiResponse<PaginationResponse<DTO>> buildSuccessResponse(PaginationResponse<DTO> data) {
+        return ApiResponse.<PaginationResponse<DTO>>builder()
                 .appCode(200)
                 .response(data)
                 .message("success")
@@ -40,7 +41,7 @@ public class ApiResponseBuilder<Dto extends AbstractDto> {
     }
 
     public ApiResponse<?> buildSuccessResponse() {
-        return ApiResponse.<PaginationResponse<Dto>>builder()
+        return ApiResponse.<PaginationResponse<DTO>>builder()
                 .appCode(200)
                 .response(null)
                 .message("success")

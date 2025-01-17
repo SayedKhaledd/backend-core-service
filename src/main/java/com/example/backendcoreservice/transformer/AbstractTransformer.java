@@ -1,12 +1,13 @@
 package com.example.backendcoreservice.transformer;
 
 import com.example.backendcoreservice.dto.AbstractDto;
+import com.example.backendcoreservice.dto.Dto;
 import com.example.backendcoreservice.model.AbstractEntity;
 import com.example.backendcoreservice.transformer.mapper.AbstractMapper;
 
 import java.util.List;
 
-public interface AbstractTransformer<E extends AbstractEntity, T extends AbstractDto, K extends AbstractMapper<E, T>> {
+public interface AbstractTransformer<E extends AbstractEntity, T extends Dto, K extends AbstractMapper<E, T>> {
     K getMapper();
 
     default E transformDtoToEntity(T dto) {
