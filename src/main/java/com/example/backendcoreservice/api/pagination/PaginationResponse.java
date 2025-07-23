@@ -1,8 +1,10 @@
 package com.example.backendcoreservice.api.pagination;
 
-import com.example.backendcoreservice.dto.AbstractDto;
 import com.example.backendcoreservice.dto.Dto;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.example.backendcoreservice.api;
 
 import com.example.backendcoreservice.api.pagination.PaginationResponse;
-import com.example.backendcoreservice.dto.AbstractDto;
 import com.example.backendcoreservice.dto.Dto;
 import org.springframework.stereotype.Component;
 
