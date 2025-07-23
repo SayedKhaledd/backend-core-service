@@ -1,6 +1,5 @@
 package com.example.backendcoreservice.transformer.mapper;
 
-import com.example.backendcoreservice.dto.AbstractDto;
 import com.example.backendcoreservice.dto.Dto;
 import com.example.backendcoreservice.model.AbstractEntity;
 import org.mapstruct.Mapper;

@@ -2,7 +2,6 @@ package com.example.backendcoreservice.service;
 
 import com.example.backendcoreservice.api.pagination.PaginationResponse;
 import com.example.backendcoreservice.dao.AbstractDao;
-import com.example.backendcoreservice.dto.AbstractDto;
 import com.example.backendcoreservice.dto.Dto;
 import com.example.backendcoreservice.model.AbstractEntity;
 import com.example.backendcoreservice.transformer.AbstractTransformer;
@@ -42,9 +41,19 @@ public interface AbstractService<Entity extends AbstractEntity, DTO extends Dto,
         entity = doBeforeCreate(entity, dto);
         return (DTO) getTransformer().transformEntityToDto(getDao().create(entity));
     }
+    default List<DTO> create(List<DTO> dtos) {
+        log.info("AbstractService: create() was called -  dtos{}", dtos);
+        List<Entity> entities = (List<Entity>) getTransformer().transformDtosToEntities(dtos);
+        entities = doBeforeCreate(entities, dtos);
+        return (List<DTO>) getTransformer().transformEntitiesToDtos(getDao().create(entities));
+    }
 
     default Entity doBeforeCreate(Entity entity, DTO dto) {
         return entity;
+    }
+
+    default List<Entity> doBeforeCreate(List<Entity> entities, List<DTO> dtos) {
+        return entities;
     }
 
     default Entity doBeforeUpdate(Entity entity, DTO dto) {

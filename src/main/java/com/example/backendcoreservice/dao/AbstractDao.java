@@ -26,6 +26,11 @@ public interface AbstractDao<E extends AbstractEntity, T extends JpaRepository<E
         return getRepo().save(entity);
     }
 
+    default List<E> create(List<E> entities) {
+        log.info("AbstractDao: create() was called -  entities{}", entities);
+        return getRepo().saveAll(entities);
+    }
+
     default E update(E entity) {
         log.info("AbstractDao: update() was called -  entity{}", entity);
         return getRepo().save(entity);
